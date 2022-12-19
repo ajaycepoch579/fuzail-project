@@ -9,9 +9,8 @@ class StudentWebController extends Controller
 {
     public function index()
     {
-        // dd("index");
-
-        return view('students.index');
+        $student = Student::all();
+        return view('students.index', compact('student'));
     }
     public function add()
     {
@@ -31,5 +30,29 @@ class StudentWebController extends Controller
         $student->roll_number = $request->roll_number;
         $student->save();
         return redirect('/students')->with('completed', 'Student has been saved!');
+    }
+    public function edit($id)
+    {
+        $student = Student::findOrFail($id);
+        return view('students.edit', compact('student'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'phone' => 'required|numeric',
+            'password' => 'required|max:255',
+        ]);
+        Student::whereId($id)->update($validate);
+        return redirect('/students')->with('completed', 'Student has been updated');
+    }
+
+    public function destroy($id)
+    {
+        $student = Student::findOrFail($id);
+        $student->delete();
+        return redirect('/students')->with('completed', 'Student has been deleted');
     }
 }
