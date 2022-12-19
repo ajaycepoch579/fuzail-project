@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentWebController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/students',[StudentWebController::class, 'index']);
+Route::get('/students/add',[StudentWebController::class, 'add']);
+Route::post('/students',[StudentWebController::class, 'store'])->name('students.store');
+// Route::get('/', [HomeController::class, 'index']);
