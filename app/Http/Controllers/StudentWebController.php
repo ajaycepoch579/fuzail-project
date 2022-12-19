@@ -39,11 +39,10 @@ class StudentWebController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validate = $request->validate([
+        $validate  = $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            'phone' => 'required|numeric',
-            'password' => 'required|max:255',
+            'class' => 'required|max:255',
+            'roll_number' => 'required',
         ]);
         Student::whereId($id)->update($validate);
         return redirect('/students')->with('completed', 'Student has been updated');

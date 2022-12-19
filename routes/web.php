@@ -18,9 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/students',[StudentWebController::class, 'index']);
-Route::get('/students/add',[StudentWebController::class, 'add']);
+Route::get('/students',[StudentWebController::class, 'index'])->name('students.index');
+Route::get('/students/add',[StudentWebController::class, 'add'])->name('students.add');
 Route::post('/students',[StudentWebController::class, 'store'])->name('students.store');
-Route::post('/students/{student}/edit',[StudentWebController::class, 'edit'])->name('students.edit');
+Route::get('/students/{student}/edit',[StudentWebController::class, 'edit'])->name('students.edit');
 Route::post('/students/{student}',[StudentWebController::class, 'destroy'])->name('students.destroy');
+Route::patch('/students/{student}',[StudentWebController::class, 'update'])->name('students.update');
 // Route::get('/', [HomeController::class, 'index']);

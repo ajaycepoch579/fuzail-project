@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('students.layout')
 @section('content')
 <style>
     .container {
