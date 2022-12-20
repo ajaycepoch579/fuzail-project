@@ -5,6 +5,16 @@
     margin-top: 50px;
   }
 </style>
+<div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Student Record</h2>
+            </div>
+            <div class="pull-right">
+               <button> <a class="btn btn-success" href="{{ route('students.add') }}"> Add Student Record</a></button>
+            </div>
+        </div>
+    </div>
 <div class="push-top">
   @if(session()->get('success'))
     <div class="alert alert-success">
@@ -30,6 +40,7 @@
             <td>{{$students->roll_number}}</td>
             <td class="text-center">
                 <a href="{{ route('students.edit', $students->id)}}" class="btn btn-primary btn-sm"">Edit</a>
+                <a href="{{ route('students.show', $students->id)}}" class="btn btn-primary btn-sm"">Show</a>
                 <form action="{{ route('students.destroy', $students->id)}}" method="post" style="display: inline-block">
                     @csrf
                     @method('POST')

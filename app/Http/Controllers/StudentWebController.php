@@ -29,12 +29,19 @@ class StudentWebController extends Controller
         $student->class = $request->class;
         $student->roll_number = $request->roll_number;
         $student->save();
+        
         return redirect('/students')->with('completed', 'Student has been saved!');
     }
     public function edit($id)
     {
         $student = Student::findOrFail($id);
         return view('students.edit', compact('student'));
+    }
+
+    public function show($id)
+    {
+        $students = Student::find($id);
+        return view('students.show',compact('students'));
     }
 
     public function update(Request $request, $id)

@@ -22,6 +22,6 @@ Route::get('/students',[StudentWebController::class, 'index'])->name('students.i
 Route::get('/students/add',[StudentWebController::class, 'add'])->name('students.add');
 Route::post('/students',[StudentWebController::class, 'store'])->name('students.store');
 Route::get('/students/{student}/edit',[StudentWebController::class, 'edit'])->name('students.edit');
+Route::get('/students/{student}',[StudentWebController::class, 'show'])->name('students.show');
 Route::post('/students/{student}',[StudentWebController::class, 'destroy'])->name('students.destroy');
 Route::patch('/students/{student}',[StudentWebController::class, 'update'])->name('students.update');
-// Route::get('/', [HomeController::class, 'index']);
