@@ -33,7 +33,7 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('students.store') }}">
+      <form method="post" action="{{ route('students.store') }}" enctype="multipart/form-data">
           <div class="form-group">
               @csrf
               <label for="name">Name</label>
@@ -46,6 +46,10 @@
           <div class="form-group">
               <label for="roll_number">Roll Number</label>
               <input type="text" class="form-control" name="roll_number"/>
+          </div>
+          <div class="form-group">
+              <label for="image">Image</label>
+              <input type="file" class="form-control" name="image" multiple/>
           </div>
           <button type="submit" class="btn btn-block btn-danger">Submit</button>
       </form>

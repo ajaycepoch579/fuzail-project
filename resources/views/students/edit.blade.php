@@ -8,6 +8,16 @@
       margin-top: 50px;
     }
 </style>
+<div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2> Edit & Update</h2>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-primary" href="{{ route('students.index') }}"> Back</a>
+            </div>
+        </div>
+    </div>
 <div class="card push-top">
   <div class="card-header">
     Edit & Update
@@ -37,7 +47,11 @@
               <label for="roll_number">Roll Number</label>
               <input type="text" class="form-control" name="roll_number" value="{{ $student->roll_number }}"/>
           </div>
-          <button type="submit" class="btn btn-block btn-danger">Update Students</button>
+          <div class="form-group">
+              <label for="image">Image</label>
+              <input type="file" class="form-control" name="image" value="" multiple/>
+          </div>
+          <button type="submit" class="btn btn-block btn-danger">Update Student</button>
       </form>
   </div>
 </div>

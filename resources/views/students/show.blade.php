@@ -25,12 +25,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr>    
             <td>{{$students->id}}</td>
             <td>{{$students->name}}</td>
             <td>{{$students->class}}</td>
             <td>{{$students->roll_number}}</td>
-            <td></td>
+            <td><img src="/images/{{ $image->image; }}" height="150px" width="350px"></td>
             <td class="text-center">
                 <a href="{{ route('students.edit', $students->id)}}" class="btn btn-primary btn-sm"">Edit</a>
                 <form action="{{ route('students.destroy', $students->id)}}" method="post" style="display: inline-block">
