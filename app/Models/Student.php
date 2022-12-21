@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'class', 'roll_number'];
+    public function images()
+    {
+        return $this->hasMany(StudentImage::class, 'stu_id');
+    }
 }

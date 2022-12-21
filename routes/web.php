@@ -20,7 +20,9 @@ Route::get('/', function () {
 
 Route::get('/students',[StudentWebController::class, 'index'])->name('students.index');
 Route::get('/students/add',[StudentWebController::class, 'add'])->name('students.add');
+Route::get('/students/{student}/add-image',[StudentWebController::class, 'addImage'])->name('students.addimage');
 Route::post('/students',[StudentWebController::class, 'store'])->name('students.store');
+Route::post('/students/{student}/save-image/',[StudentWebController::class, 'saveImage'])->name('students.saveimage');
 Route::get('/students/{student}/edit',[StudentWebController::class, 'edit'])->name('students.edit');
 Route::get('/students/{student}',[StudentWebController::class, 'show'])->name('students.show');
 Route::post('/students/{student}',[StudentWebController::class, 'destroy'])->name('students.destroy');

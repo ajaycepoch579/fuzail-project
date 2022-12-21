@@ -8,20 +8,21 @@
       margin-top: 50px;
     }
 </style>
-<div class="row">
+<!-- <div class="card push-top">
+  <div class="card-header">
+    Add User
+  </div> -->
+  <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Edit & Update</h2>
+                <h2> Add Image</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary btn-sm" href="{{ route('students.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('students.index') }}"> Back</a>
             </div>
         </div>
     </div>
-<div class="card push-top">
-  <div class="card-header">
-    Edit & Update
-  </div>
+   
   <div class="card-body">
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -32,26 +33,27 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('students.update', $student->id) }}" enctype="multipart/form-data">
-          <div class="form-group">
-              @csrf
-              @method('PATCH')
+      <form method="post" action="{{ route('students.saveimage',$students) }}" enctype="multipart/form-data">
+            @csrf 
+        <!-- <div class="form-group">
+             
               <label for="name">Name</label>
-              <input type="text" class="form-control" name="name" value="{{ $student->name }}"/>
+              <input type="text" class="form-control" name="name"/>
           </div>
           <div class="form-group">
               <label for="class">Class</label>
-              <input type="text" class="form-control" name="class" value="{{ $student->class }}"/>
+              <input type="text" class="form-control" name="class"/>
           </div>
           <div class="form-group">
               <label for="roll_number">Roll Number</label>
-              <input type="text" class="form-control" name="roll_number" value="{{ $student->roll_number }}"/>
-          </div>
+              <input type="text" class="form-control" name="roll_number"/>
+          </div> -->
+          
           <div class="form-group">
               <label for="image">Image</label>
-              <input type="file" class="form-control" name="image" value="" multiple/>
+              <input type="file" class="form-control" name="image[]" multiple/>
           </div>
-          <button type="submit" class="btn btn-block btn-danger">Update Student</button>
+          <button type="submit" class="btn btn-block btn-danger">Upload Image</button>
       </form>
   </div>
 </div>

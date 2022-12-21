@@ -11,7 +11,7 @@
                 <h2>Student Record</h2>
             </div>
             <div class="pull-right">
-               <button> <a class="btn btn-success" href="{{ route('students.add') }}"> Add Student Record</a></button>
+               <a class="btn btn-success" href="{{ route('students.add') }}"> Add Student Record</a>
             </div>
         </div>
     </div>
@@ -44,8 +44,10 @@
                 <form action="{{ route('students.destroy', $students->id)}}" method="post" style="display: inline-block">
                     @csrf
                     @method('POST')
-                    <button class="btn btn-danger btn-sm"" type="submit">Delete</button>
+                    <!-- <button class="btn btn-danger btn-sm"" type="submit">Delete</button> -->
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">Delete</button>
                   </form>
+                  <a class="btn btn-success btn-sm" href="{{ route('students.addimage',$students->id) }}"> Add Image</a>
             </td>
         </tr>
         @endforeach

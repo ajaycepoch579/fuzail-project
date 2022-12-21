@@ -18,7 +18,7 @@
                 <h2> Add Student</h2>
             </div>
             <div class="pull-right">
-                <button><a class="btn btn-primary" href="{{ route('students.index') }}"> Back</a><butoon>
+                <a class="btn btn-primary" href="{{ route('students.index') }}"> Back</a>
             </div>
         </div>
     </div>
