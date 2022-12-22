@@ -28,6 +28,7 @@
           <td>Name</td>
           <td>Class</td>
           <td>Roll Number</td>
+          <td>Department</td>
           <td class="text-center">Action</td>
         </tr>
     </thead>
@@ -38,6 +39,7 @@
             <td>{{$students->name}}</td>
             <td>{{$students->class}}</td>
             <td>{{$students->roll_number}}</td>
+            <td>{{$students->}}</td>
             <td class="text-center">
                 <a href="{{ route('students.edit', $students->id)}}" class="btn btn-primary btn-sm"">Edit</a>
                 <a href="{{ route('students.show', $students->id)}}" class="btn btn-primary btn-sm"">Show</a>
