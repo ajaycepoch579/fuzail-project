@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentWebController;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,17 @@ Route::get('/students/{student}/edit',[StudentWebController::class, 'edit'])->na
 Route::get('/students/{student}',[StudentWebController::class, 'show'])->name('students.show');
 Route::post('/students/{student}',[StudentWebController::class, 'destroy'])->name('students.destroy');
 Route::patch('/students/{student}',[StudentWebController::class, 'update'])->name('students.update');
+
+
+// Department Routes
+Route::get('/departments',[DepartmentController::class, 'index'])->name('departments.index');
+Route::get('/departments/add',[DepartmentController::class, 'add'])->name('departments.add');
+Route::post('/departments',[DepartmentController::class, 'store'])->name('departments.store');
+Route::get('/departments/{department}',[DepartmentController::class, 'show'])->name('departments.show');
+Route::get('/departments/{department}/edit',[DepartmentController::class, 'edit'])->name('departments.edit');
+Route::patch('/departments/{department}',[DepartmentController::class, 'update'])->name('departments.update');
+Route::post('/departments/{department}',[DepartmentController::class, 'destroy'])->name('departments.destroy');
+
+
+
+

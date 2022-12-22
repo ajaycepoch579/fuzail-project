@@ -12,7 +12,7 @@ class StudentWebController extends Controller
     public function index()
     {
         // $student = Student::all();
-        $student = Student::paginate(10);
+        $student = Student::all();
         return view('students.index', compact('student'));
     }
     public function add()
@@ -59,9 +59,6 @@ class StudentWebController extends Controller
     public function show($id)
     {
         $students = Student::find($id);
-        // $image = StudentImage::where('stu_id',$id)->latest()->first();
-        // dd($img->image);
-        // echo "<img src="/storage/images/$image-" />";
         return view('students.show',compact('students'));
     }
 
@@ -94,8 +91,6 @@ class StudentWebController extends Controller
                             $stuImg->save();
                     }
                 }
-            // $studentObj->employee_no = $requestData['employee_no'] ?? $filterObj->employee_no;
-        // $student = Student::whereId($id)->update($validate);
         return redirect('/students')->with('success', 'Student has been updated');
     }
 

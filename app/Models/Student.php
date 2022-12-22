@@ -13,4 +13,8 @@ class Student extends Model
     {
         return $this->hasMany(StudentImage::class, 'stu_id');
     }
+    public function department()
+    {
+        return $this->hasOne(Department::class, 'id');
+    }
 }
