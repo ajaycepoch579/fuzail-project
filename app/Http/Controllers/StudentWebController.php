@@ -59,11 +59,10 @@ class StudentWebController extends Controller
     public function show($id)
     {
         $students = Student::find($id);
-        $image = StudentImage::where('stu_id',$id)->latest()->first();
+        // $image = StudentImage::where('stu_id',$id)->latest()->first();
         // dd($img->image);
-
         // echo "<img src="/storage/images/$image-" />";
-        return view('students.show',compact('students','image'));
+        return view('students.show',compact('students'));
     }
 
     public function update(Request $request, $id)
@@ -114,21 +113,14 @@ class StudentWebController extends Controller
     public function saveImage(Request $request , $id)
     {
         $request->validate([
-            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'image' => 'required',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);  
-        // $allowedfileExtension=['pdf','jpg','png'];
-        
         if ($request->hasFile('image')) {
             $images = $request->file('image');       
             foreach($images as $image){
-                // dd($image);
             $filename = $image->getClientOriginalName();
-            // $extension = $image->getClientOriginalExtension();
-            // dd($extension);
             $image->move(public_path('images'), $filename);
-                // $request->image->storeAs('images', $filename);
                 $stuImg = new StudentImage();
                 $stuImg->stu_id = $id;
                 $stuImg->image=$filename;
