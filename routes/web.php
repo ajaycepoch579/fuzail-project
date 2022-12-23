@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentWebController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,12 @@ use App\Http\Controllers\DepartmentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Auth Routes
+Route::get('/register', [AuthController::class, 'registerUser'])->name('register');
+Route::post('/register', [AuthController::class, 'saveUser'])->name('register');
+Route::get('/login', [AuthController::class, 'show'])->name('login');
+Route::post('/login', [AuthController::class, 'handle'])->name('login');
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,6 +45,9 @@ Route::get('/departments/{department}',[DepartmentController::class, 'show'])->n
 Route::get('/departments/{department}/edit',[DepartmentController::class, 'edit'])->name('departments.edit');
 Route::patch('/departments/{department}',[DepartmentController::class, 'update'])->name('departments.update');
 Route::post('/departments/{department}',[DepartmentController::class, 'destroy'])->name('departments.destroy');
+
+
+
 
 
 
