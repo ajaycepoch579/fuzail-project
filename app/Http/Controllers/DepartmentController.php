@@ -9,6 +9,7 @@ class DepartmentController extends Controller
 {
     public function index()
     {
+        // dd("here");
         $departments = Department::paginate(10);
         return view('departments.index', compact('departments'));
     }
