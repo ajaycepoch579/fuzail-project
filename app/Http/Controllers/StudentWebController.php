@@ -5,20 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\StudentImage;
+use App\Models\Department;
 use Illuminate\Support\Facades\Storage;
 
 class StudentWebController extends Controller
 {
     public function index()
     {
-        // $student = Student::all();
+        $department = Department::all();
         $student = Student::all();
-        return view('students.index', compact('student'));
+        return view('students.index', compact('student','department'));
     }
     public function add()
     {
-        // dd("add student");
-        return view('students.add');
+        $department = Department::all();
+        return view('students.add',compact('department'));
     }
     public function store(Request $request)
     {
@@ -32,6 +33,7 @@ class StudentWebController extends Controller
         $student->name = $request->name;
         $student->class = $request->class;
         $student->roll_number = $request->roll_number;
+        $student->department_id = $request->department;
         $student->save();
             if($student->save())
             {
@@ -47,13 +49,15 @@ class StudentWebController extends Controller
                         $stuImg->save();
                 }
             }
+            
         
         return redirect('/students')->with('success', 'New Student is Added.');
     }
     public function edit($id)
     {
         $student = Student::findOrFail($id);
-        return view('students.edit', compact('student'));
+        $department = Department::all();
+        return view('students.edit', compact('student','department'));
     }
 
     public function show($id)

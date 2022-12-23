@@ -9,13 +9,11 @@ class DepartmentController extends Controller
 {
     public function index()
     {
-        // dd("here");
-        $departments = Department::paginate(10);
+        $departments = Department::all();
         return view('departments.index', compact('departments'));
     }
     public function add()
     {
-        // dd("add student");
         return view('departments.add');
     }
     public function store(Request $request)

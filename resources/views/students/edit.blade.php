@@ -48,6 +48,15 @@
               <input type="text" class="form-control" name="roll_number" value="{{ $student->roll_number }}"/>
           </div>
           <div class="form-group">
+          <label for="department">Department</label>
+            <select class="form-select form-select-lg" aria-label=".form-select-lg example" style="padding:3px 115px;" name="department">
+            <option selected>Select Department</option>
+            @foreach($department as $dep)  
+              <option value="{{$dep->id}}">{{$dep->name;}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
               <label for="image">Image</label>
               <input type="file" class="form-control" name="image" value="" multiple/>
           </div>

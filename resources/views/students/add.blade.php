@@ -48,11 +48,12 @@
               <input type="text" class="form-control" name="roll_number"/>
           </div>
           <div class="form-group">
-            <select class="form-select form-select-lg" aria-label=".form-select-lg example" style="padding:3px 115px;">
-              <option selected>Select Department</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+          <label for="department">Department</label>
+            <select class="form-select form-select-lg" aria-label=".form-select-lg example" style="padding:3px 115px;" name="department">
+            <option selected>Select Department</option>
+            @foreach($department as $dep)  
+              <option value="{{$dep->id}}">{{$dep->name;}}</option>
+              @endforeach
             </select>
           </div>
           <div class="form-group">
