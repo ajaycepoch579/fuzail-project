@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->bigInteger('department_id')->nullable();
+            $table->bigInteger('department_id')->after('roll_number')->nullable();
         });
     }
 
