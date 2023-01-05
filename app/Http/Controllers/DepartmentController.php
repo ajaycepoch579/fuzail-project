@@ -7,9 +7,17 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $departments = Department::all();
+        // $departments = Department::all();
+        $deptObj = Department::latest();
+        if($request->has('search') && !empty($request->get('search'))){
+        $search = $request->input('search');
+        $deptObj->whereRaw("(name ILIKE E'%" . $search . "%')");
+            $departments = $deptObj->paginate(10)->appends(['q' => $search]);
+        } else {
+            $departments = $deptObj->paginate(10);
+        }   
         return view('departments.index', compact('departments'));
     }
     public function add()

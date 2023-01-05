@@ -10,11 +10,21 @@ use Illuminate\Support\Facades\Storage;
 
 class StudentWebController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $department = Department::all();
-        $student = Student::all();
-        return view('students.index', compact('student','department'));
+        // $department = Department::all();
+        $studentObj = Student::latest();
+        if($request->has('search') && !empty($request->get('search'))){
+        $search = $request->input('search');
+        $studentObj->whereRaw("(name ILIKE E'%" . $search . "%'  OR class ILIKE E'%" . $search . "%' OR roll_number ILIKE E'%" . $search . "%')");
+            $studentObj->orWhereHas('department', function ($query) use ($search){
+                $query->where('name', 'like', '%'.$search.'%');
+            });
+            $student = $studentObj->paginate(10)->appends(['q' => $search]);
+        } else {
+            $student = $studentObj->paginate(10);
+        }       
+        return view('students.index', compact('student'));
     }
     public function add()
     {
@@ -79,6 +89,7 @@ class StudentWebController extends Controller
             $studentObj->name        = $requestData['name'] ?? $studentObj->name;
             $studentObj->class       = $requestData['class'] ?? $studentObj->class;
             $studentObj->roll_number = $requestData['roll_number'] ?? $studentObj->roll_number;
+            $studentObj->department_id =  $requestData['department'] ?? $request->department;
             $studentObj->save();
                 if($studentObj->save())
                 {
@@ -127,5 +138,20 @@ class StudentWebController extends Controller
             }
         }
         return redirect('/students')->with('success', 'Images Added Successfully.');
+    }
+
+    public function search(Request $request){
+        // Get the search value from the request
+        $search = $request->input('search');
+    
+        // Search in the title and body columns from the posts table
+        $student = Student::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('class', 'LIKE', "%{$search}%")
+            ->orWhere('roll_number', 'LIKE', "%{$search}%")
+            ->get();
+    
+        // Return the search view with the resluts compacted
+        return view('students.index', compact('student'));
     }
 }

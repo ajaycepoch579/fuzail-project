@@ -21,6 +21,16 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
+  <div class="row my-4">
+    <div class="col-sm-12 col-md-8"></div>
+    <div class="col-sm-12 col-md-4">
+    <form action="" method="GET">
+    <input type="text" name="search"/>
+    <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    </div>
+  </div>
+  
   <table class="table">
     <thead>
         <tr class="table-warning">
@@ -32,10 +42,12 @@
           <td class="text-center">Action</td>
         </tr>
     </thead>
+    <?php $i = 1; ?>
     <tbody>
+       @if($student->isNotEmpty())
         @foreach($student as $students)
         <tr>
-            <td>{{$students->id}}</td>
+            <td>{{$i++}}</td>
             <td>{{$students->name}}</td>
             <td>{{$students->class}}</td>
             <td>{{$students->roll_number}}</td>
@@ -53,7 +65,19 @@
             </td>
         </tr>
         @endforeach
+        @else 
+    <div>
+        <h2>No Record Found</h2>
+    </div>
+@endif
     </tbody>
   </table>
+  <div class="row">
+    <div class="col-sm-12 col-md-9"></div>
+    <div class="col-sm-12 col-md-3">
+    {!! $student->links() !!} 
+    </div>
+  </div>
+
 <div>
 @endsection

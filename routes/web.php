@@ -35,6 +35,7 @@ Route::get('/students/{student}/edit',[StudentWebController::class, 'edit'])->na
 Route::get('/students/{student}',[StudentWebController::class, 'show'])->name('students.show');
 Route::post('/students/{student}',[StudentWebController::class, 'destroy'])->name('students.destroy');
 Route::patch('/students/{student}',[StudentWebController::class, 'update'])->name('students.update');
+// Route::get('/students/search/',[StudentWebController::class, 'search'])->name('students.index');
 
 
 // Department Routes

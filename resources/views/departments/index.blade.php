@@ -23,6 +23,15 @@
     </div><br />
   @endif
 
+  <div class="row my-4">
+    <div class="col-sm-12 col-md-8"></div>
+    <div class="col-sm-12 col-md-4">
+    <form action="" method="GET">
+    <input type="text" name="search"/>
+    <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    </div>
+  </div>
   <table class="table">
     <thead>
         <tr class="table-warning">
@@ -53,6 +62,12 @@
         @endforeach
     </tbody>
   </table>
+  <div class="row">
+    <div class="col-sm-12 col-md-9"></div>
+    <div class="col-sm-12 col-md-3">
+    {!! $departments->links() !!} 
+    </div>
+  </div>
 <div>
 </div>
 @endsection
