@@ -13,6 +13,8 @@
             </div>
             <div class="pull-right">
                <a class="btn btn-success" href="{{ route('departments.add') }}"> Add Department</a>
+               <a class="btn btn-success" href="{{ route('students.index') }}">Student Section</a>
+
             </div>
         </div>
     </div>

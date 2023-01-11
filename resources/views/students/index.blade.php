@@ -5,14 +5,33 @@
     margin-top: 50px;
   }
 </style>
+<div class="container-fluid my-4" >
+<div class="row ">
+<div class="col-sm-12 col-md-4 col-lg-4">
+  <div class="pull-left">
+                <h2 class="">MyAssignment</h2>
+  </div>
+</div>
+  <div class="col-sm-12 col-md-4 col-lg-5">
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-3">
+    <form action="{{ route('logout') }}" method="post">
+    @csrf
+    <label class="font-weight-bold">{{ auth()->user()->name }}</label>
+    <button class="btn btn-danger" type="submit">Logout</button>
+</form>
+  </div>
+</div>
+</div>
 <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Student Record</h2>
+                <!-- <h2>Student Record</h2> -->
             </div>
             <div class="pull-right">
                <a class="btn btn-success" href="{{ route('students.add') }}"> Add Student Record</a>
-            </div>
+               <a class="btn btn-success" href="{{ route('departments.index') }}">Departments</a>
+              </div>
         </div>
     </div>
 <div class="push-top">
@@ -31,7 +50,7 @@
     </div>
   </div>
   
-  <table class="table">
+  <table class="table table-bordered">
     <thead>
         <tr class="table-warning">
           <td>ID</td>

@@ -21,11 +21,12 @@ Route::get('/register', [AuthController::class, 'registerUser'])->name('register
 Route::post('/register', [AuthController::class, 'saveUser'])->name('register');
 Route::get('/login', [AuthController::class, 'show'])->name('login');
 Route::post('/login', [AuthController::class, 'handle'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::group(['middleware' => ['auth']], function () {
 Route::get('/students',[StudentWebController::class, 'index'])->name('students.index');
 Route::get('/students/add',[StudentWebController::class, 'add'])->name('students.add');
 Route::get('/students/{student}/add-image',[StudentWebController::class, 'addImage'])->name('students.addimage');
@@ -46,7 +47,7 @@ Route::get('/departments/{department}',[DepartmentController::class, 'show'])->n
 Route::get('/departments/{department}/edit',[DepartmentController::class, 'edit'])->name('departments.edit');
 Route::patch('/departments/{department}',[DepartmentController::class, 'update'])->name('departments.update');
 Route::post('/departments/{department}',[DepartmentController::class, 'destroy'])->name('departments.destroy');
-
+});
 
 
 
